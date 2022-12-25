@@ -61,6 +61,8 @@ class zInusingRcPage extends StatelessWidget {
   var VZ1 = Complex(re:0 , im:0);
   var voplus = Complex(re:0 , im:0);
   var voplus1 = Complex(re:0 , im:0);
+  var vominus = Complex(re:0 , im:0);
+  var vominus1 = Complex(re:0 , im:0);
   TextEditingController Vgg = TextEditingController(text: ''); // Vg
   TextEditingController Zgg = TextEditingController(text: ''); //  Zg
 
@@ -76,6 +78,7 @@ class zInusingRcPage extends StatelessWidget {
   });
 
   @override
+
   Widget build(BuildContext context) {
 
     return Scaffold(
@@ -237,6 +240,8 @@ class zInusingRcPage extends StatelessWidget {
                           VZ1 = VZ;
                           final voplus = (VZ1)/((j2betaZpos1)*(zInusingRczTop1));
                           voplus1 = voplus;
+                          final vominus = voplus1*rcvalue1;
+                          vominus1 = vominus;
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context)=>Voplus(j:j ,realZL:realZL ,  imaginaryZL:imaginaryZL , realZo:realZo ,
@@ -246,7 +251,7 @@ class zInusingRcPage extends StatelessWidget {
                                   swrValue1:swrValue1 , thetaRo2:thetaRo2, j2betaZpos:j2betaZpos ,  j2betaZpos1:j2betaZpos1,
                                   rcAtz:rcAtz, rcAtz1:rcAtz1, zInusingRcz1:zInusingRcz1 , zInusingRcz:zInusingRcz,
                                   zInusingRczTop:zInusingRczTop , zInusingRczBtm:zInusingRczBtm ,  zInusingRczTop1:zInusingRczTop1 ,
-                                  zInusingRczBtm1:zInusingRczBtm1, Vg:Vg , Zg:Zg , VZ1:VZ1 , VZ:VZ , voplus:voplus , voplus1:voplus1),
+                                  zInusingRczBtm1:zInusingRczBtm1, Vg:Vg , Zg:Zg , VZ1:VZ1 , VZ:VZ , voplus:voplus , voplus1:voplus1,vominus:vominus , vominus1:vominus1),
                             ),
                           );
 
@@ -280,7 +285,7 @@ class zInusingRcPage extends StatelessWidget {
             ListTile(
               title: Text("Home" , style: TextStyle(fontSize: 18),),
               onTap: () {
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(builder: (context) => calculation()),
                 );
               },
@@ -294,81 +299,90 @@ class zInusingRcPage extends StatelessWidget {
                     builder: (context) => rcPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         rcvalue11: rcvalue11, zovalue: zovalue, zlvalue: zlvalue, zovalue1: zovalue1, zlvalue1: zlvalue1, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1,
                         beta: beta, zPosition: zPosition, SWR: SWR, rcUsingSwr1: rcUsingSwr1, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1,
-                        swrValue1: swrValue1, thetaRo2: thetaRo2, j2betaZpos: j2betaZpos, j2betaZpos1: j2betaZpos1, rcAtz: rcAtz, rcAtz1: rcAtz1),),);
+                        swrValue1: swrValue1, thetaRo2: thetaRo2, j2betaZpos: j2betaZpos, j2betaZpos1: j2betaZpos1, rcAtz: rcAtz, rcAtz1: rcAtz1),
+
+                  ),
+                );
               },
             ),
             ListTile(
               title: Text('Reflection Coefficient at $zPosition m ', style:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => rczPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zovalue1: zovalue1, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta,
                         zPosition: zPosition, SWR: SWR, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1,
-                        thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1),),);
+                        thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex(" ${r'\Z_'}{in}${r'\,'}at${r'\,'}$zPosition m" , textStyle:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => zInusingRcPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zovalue1: zovalue1, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition,
                         SWR: SWR, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1,
                         thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1,
                         zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz, zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm,
-                        zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1),),);
+                        zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("{${"Input${r'\ \,'}Impedance"}}${r'\ \,'}${r'\Z_'}{in}(-${r'\ell'}) " , textStyle:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => zInPage(j: j, realZL: realZL, imaginaryZL: imaginaryZL, realZo: realZo, imaginaryZo: imaginaryZo, zlvalue: zlvalue,
                         zovalue: zovalue, zlvalue1: zlvalue1, zovalue1: zovalue1, rctop: rctop, rcbtm: rcbtm, rctop1: rctop1, rcbtm1: rcbtm1, beta: beta,
-                        zPosition: zPosition, zIn: zIn, zIn1: zIn1, zIntop: zIntop, zInbtm: zInbtm, zIntop1: zIntop1, zInbtm1: zInbtm1, tanbetaz: tanbetaz),),);
+                        zPosition: zPosition, zIn: zIn, zIn1: zIn1, zIntop: zIntop, zInbtm: zInbtm, zIntop1: zIntop1, zInbtm1: zInbtm1, tanbetaz: tanbetaz),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("${r'\ V_{in}'}" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => vZ(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition, SWR: SWR,
                         thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1, thetaRo2: thetaRo2,
                         j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1, zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz,
                         zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm, zInusingRczTop1: zInusingRczTop1,
-                        zInusingRczBtm1: zInusingRczBtm1, Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),),);
+                        zInusingRczBtm1: zInusingRczBtm1, Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("${r'\ V_o^+'}" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => Voplus(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition, SWR: SWR,
                         thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1, thetaRo2: thetaRo2,
                         j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1, zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz,
                         zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm, zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1,
-                        Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),),);
+                        Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1, vominus:vominus , vominus1: vominus1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("Formula Page" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
-                    builder: (context) => formulaPage(),),);
+                    builder: (context) => formulaPage(),
+                  ),);
               },
             ),
 

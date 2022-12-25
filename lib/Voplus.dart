@@ -62,6 +62,8 @@ class Voplus extends StatelessWidget {
   var VZ1 = Complex(re:0 , im:0);
   var voplus = Complex(re:0 , im:0);
   var voplus1 = Complex(re:0 , im:0);
+  var vominus = Complex(re:0 , im:0);
+  var vominus1 = Complex(re:0 , im:0);
 
 
 
@@ -72,10 +74,11 @@ class Voplus extends StatelessWidget {
     ,required this.thetaRo1, required this.swrValue1 , required this.thetaRo2 , required this.j2betaZpos1 , required this.j2betaZpos
     ,required this.rcAtz , required this.rcAtz1, required this.zInusingRcz1 , required this.zInusingRcz , required this.zInusingRczTop,
     required this.zInusingRczBtm, required this.zInusingRczTop1, required this.zInusingRczBtm1, required this.Zg , required this.Vg,
-    required this.VZ , required this.VZ1 , required this.voplus , required this.voplus1
+    required this.VZ , required this.VZ1 , required this.voplus , required this.voplus1 , required this.vominus , required this.vominus1
   });
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -139,10 +142,55 @@ class Voplus extends StatelessWidget {
                       ),
                     ]
                 ),
+                ExpansionTile(
+                    title: Text('More',style:TextStyle(color: Colors.black ),),
+                    backgroundColor: Colors.grey[200],
+                    collapsedBackgroundColor: Colors.yellow[300],
+                    children: [
+                      ListTile( title: Math.tex("${r'\ V_o^+'} =${r'\frac {V(- \ell)}{e^{j \beta \ell}[{1+ \Gamma_L e^{2j \beta \ell}]}}'}",  textStyle: TextStyle(fontSize: 25 , color: Colors.deepPurple , fontWeight: FontWeight.bold) ,  )),
+                      ListTile(title: Text(""),),
+                      ListTile( title: Math.tex("V(-${r'\ell'}) = ${r'\frac {Z_{in}}{Z_{in}+ Z_g}'}${r'\ V_g'}",  textStyle: TextStyle(fontSize: 18 , color: Colors.red , ),)),
+                      ListTile(title: Text.rich(TextSpan(text: 'Step 1:   ', style: TextStyle(fontSize: 25 ,  decoration: TextDecoration.underline,),),)),
+                      ListTile( title: Math.tex("V(-${r'\ell'}) = ${vominus1.re.toStringAsFixed(3)} + ${vominus1.im.toStringAsFixed(3)}j",  textStyle: TextStyle(fontSize: 25 , color: Colors.black , ),)),
+                      ListTile( title: Math.tex("${r'\ e ^ {j \beta \ell} '} = ${j2betaZpos1.re.toStringAsFixed(3)} + ${j2betaZpos1.im.toStringAsFixed(3)}j",  textStyle: TextStyle(fontSize: 25 , color: Colors.black , ),)),
+                      ListTile( title: Math.tex("${r'\ 1+ \Gamma_L e^{2j \beta \ell} '} = ${zInusingRczTop1.re.toStringAsFixed(3)} + ${zInusingRczTop1.im.toStringAsFixed(3)}j",  textStyle: TextStyle(fontSize: 25 , color: Colors.black , ),)),
+                      ListTile( title: Math.tex("(${r'\ e ^ {j \beta \ell} '})*(${r'\ 1+ \Gamma_L e^{2j \beta \ell} '})",  textStyle: TextStyle(fontSize: 25 , color: Colors.black , ),)),
+                      ListTile( title: Math.tex("=${(j2betaZpos1*zInusingRczTop1).re.toStringAsFixed(3)}+${(j2betaZpos1*zInusingRczTop1).im.toStringAsFixed(3)}j",  textStyle: TextStyle(fontSize: 25 , color: Colors.black , ),)),
+                      ExpansionTile(title: Text("Details ",style: TextStyle(fontSize: 20 ,color: Colors.blue)),
+                          children: [
+                            ListTile(title: Math.tex("${r'\ell'} = ${-zPosition}",textStyle: TextStyle(fontSize: 25 , color: Colors.black , ))),
+                            ListTile(title: Math.tex("${r'\beta'} = ${beta}",textStyle: TextStyle(fontSize: 25 , color: Colors.black , ))),
+                            ListTile( title: Math.tex("{${"Ae ^{{j}${r'\theta'}}"}}" , textStyle:  TextStyle(fontSize: 25)),),
+                            ListTile( title: Math.tex("${"="}${"A${r'\angle'}${r'\theta'}"}" , textStyle:  TextStyle(fontSize: 25)),),
+                            ListTile( title: Math.tex("${"="}${"Acos${r'\theta'}+jAsin${r'\theta'}"}" , textStyle:  TextStyle(fontSize: 25)),),
+                            ListTile( title: Math.tex("${"="}${j2betaZpos1.re.toStringAsFixed(3)} + ${j2betaZpos1.im.toStringAsFixed(3)}j" , textStyle:  TextStyle(fontSize: 25)),),
+                            ListTile( title: Math.tex("${"A=1 , ${r'\theta ='}${beta*-zPosition}rad "}" , textStyle:  TextStyle(fontSize: 25)),),
+                          ]
+                      ),
+                      ListTile(title: Text.rich(TextSpan(text: 'Step 2:   ', style: TextStyle(fontSize: 25 ,  decoration: TextDecoration.underline,),),)),
+                      ListTile( title: Math.tex("${r'\frac {V(- \ell)}{e^{j \beta \ell}[{1+ \Gamma_L e^{2j \beta \ell}]}}'}",  textStyle: TextStyle(fontSize: 25 ,) ,  )),
+                      ListTile( title: Math.tex("${"="}${r'\frac'}{${VZ1.re.toStringAsFixed(3)} + ${VZ1.im.toStringAsFixed(3)}j}{${(j2betaZpos1*zInusingRczTop1).re.toStringAsFixed(3)}+${(j2betaZpos1*zInusingRczTop1).im.toStringAsFixed(3)}j}" , textStyle:  TextStyle(fontSize: 25)),),
+                      ListTile(title: Math.tex("= ${voplus1.re.toStringAsFixed(3)} + ${voplus1.im.toStringAsFixed(3)}j" ,textStyle:  TextStyle(fontSize: 25))),
+                      ExpansionTile(title: Text("Details ",style: TextStyle(fontSize: 20 ,color: Colors.blue)),
+                          children: [
+                            ListTile( title: Math.tex("A+jB", textStyle: TextStyle(fontSize: 25) ,)),
+                            ListTile( title: Math.tex(" ${'='} ${r'\sqrt{A^2 + B^2} \angle'} ${r'\tan^-1'}{(} ${r'\frac{B}{A}'}{)}", textStyle: TextStyle(fontSize: 25) ,)),
+                            ListTile( title: Math.tex("{${(VZ1).re.toStringAsFixed(3)}+${(VZ1).im.toStringAsFixed(3)}j}", textStyle: TextStyle(fontSize: 25) ,)),
+                            ListTile( title: Math.tex("${'=' }${VZ1.module.toStringAsFixed(3)}${r'\angle'}${VZ1.argument.toStringAsFixed(3)}rad", textStyle: TextStyle(fontSize: 25) ,)),
+                            ListTile( title: Math.tex("{ ${(j2betaZpos1*zInusingRczTop1).re.toStringAsFixed(3)}+${(j2betaZpos1*zInusingRczTop1).im.toStringAsFixed(3)}j} " , textStyle: TextStyle(fontSize: 25) ,)),
+                            ListTile( title: Math.tex("${'=' }${(j2betaZpos1*zInusingRczTop1).module.toStringAsFixed(3)}${r'\angle'}${(j2betaZpos1*zInusingRczTop1).argument.toStringAsFixed(3)}rad", textStyle: TextStyle(fontSize: 25) ,)),
+                            ListTile( title: Math.tex(" ${r'\frac'}{${VZ1.module.toStringAsFixed(3)}}{${(j2betaZpos1*zInusingRczTop1).module.toStringAsFixed(3)}}${r'\angle'}(${VZ1.argument.toStringAsFixed(3)})-(${(j2betaZpos1*zInusingRczTop1).argument.toStringAsFixed(3)})rad" , textStyle: TextStyle(fontSize: 25) ,)),
+                            ListTile( title: Math.tex("= ${(VZ1.module/(j2betaZpos1*zInusingRczTop1).module).toStringAsFixed(3)}${r'\angle'}${(VZ1.argument-(j2betaZpos1*zInusingRczTop1).argument).toStringAsFixed(3)}rad" , textStyle: TextStyle(fontSize: 25) ,)),
 
-
-
-
+                            ExpansionTile(title: Text("Details ",style: TextStyle(fontSize: 20 ,color: Colors.blue)),
+                              children: [
+                                ListTile( title: Math.tex("${(VZ1.module/(j2betaZpos1*zInusingRczTop1).module).toStringAsFixed(3)}cos(${(VZ1.argument-(j2betaZpos1*zInusingRczTop1).argument).toStringAsFixed(3)})+${(VZ1.module/(j2betaZpos1*zInusingRczTop1).module).toStringAsFixed(3)}sin(${(VZ1.argument-(j2betaZpos1*zInusingRczTop1).argument).toStringAsFixed(3)})j", textStyle: TextStyle(fontSize: 25 ,) ,  )),
+                                ListTile(title: Math.tex(" =${voplus1.re.toStringAsFixed(3)} + ${voplus1.im.toStringAsFixed(3)}j " , textStyle: TextStyle(fontSize: 25),),)
+                              ],)
+                          ]
+                      ),
+                    ]
+                ),
 
               ],
             ),
@@ -163,7 +211,7 @@ class Voplus extends StatelessWidget {
             ListTile(
               title: Text("Home" , style: TextStyle(fontSize: 18),),
               onTap: () {
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(builder: (context) => calculation()),
                 );
               },
@@ -177,81 +225,90 @@ class Voplus extends StatelessWidget {
                     builder: (context) => rcPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         rcvalue11: rcvalue11, zovalue: zovalue, zlvalue: zlvalue, zovalue1: zovalue1, zlvalue1: zlvalue1, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1,
                         beta: beta, zPosition: zPosition, SWR: SWR, rcUsingSwr1: rcUsingSwr1, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1,
-                        swrValue1: swrValue1, thetaRo2: thetaRo2, j2betaZpos: j2betaZpos, j2betaZpos1: j2betaZpos1, rcAtz: rcAtz, rcAtz1: rcAtz1),),);
+                        swrValue1: swrValue1, thetaRo2: thetaRo2, j2betaZpos: j2betaZpos, j2betaZpos1: j2betaZpos1, rcAtz: rcAtz, rcAtz1: rcAtz1),
+
+                  ),
+                );
               },
             ),
             ListTile(
               title: Text('Reflection Coefficient at $zPosition m ', style:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => rczPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zovalue1: zovalue1, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta,
                         zPosition: zPosition, SWR: SWR, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1,
-                        thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1),),);
+                        thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex(" ${r'\Z_'}{in}${r'\,'}at${r'\,'}$zPosition m" , textStyle:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => zInusingRcPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zovalue1: zovalue1, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition,
                         SWR: SWR, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1,
                         thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1,
                         zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz, zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm,
-                        zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1),),);
+                        zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("{${"Input${r'\ \,'}Impedance"}}${r'\ \,'}${r'\Z_'}{in}(-${r'\ell'}) " , textStyle:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => zInPage(j: j, realZL: realZL, imaginaryZL: imaginaryZL, realZo: realZo, imaginaryZo: imaginaryZo, zlvalue: zlvalue,
                         zovalue: zovalue, zlvalue1: zlvalue1, zovalue1: zovalue1, rctop: rctop, rcbtm: rcbtm, rctop1: rctop1, rcbtm1: rcbtm1, beta: beta,
-                        zPosition: zPosition, zIn: zIn, zIn1: zIn1, zIntop: zIntop, zInbtm: zInbtm, zIntop1: zIntop1, zInbtm1: zInbtm1, tanbetaz: tanbetaz),),);
+                        zPosition: zPosition, zIn: zIn, zIn1: zIn1, zIntop: zIntop, zInbtm: zInbtm, zIntop1: zIntop1, zInbtm1: zInbtm1, tanbetaz: tanbetaz),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("${r'\ V_{in}'}" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => vZ(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition, SWR: SWR,
                         thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1, thetaRo2: thetaRo2,
                         j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1, zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz,
                         zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm, zInusingRczTop1: zInusingRczTop1,
-                        zInusingRczBtm1: zInusingRczBtm1, Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),),);
+                        zInusingRczBtm1: zInusingRczBtm1, Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("${r'\ V_o^+'}" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => Voplus(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition, SWR: SWR,
                         thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1, thetaRo2: thetaRo2,
                         j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1, zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz,
                         zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm, zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1,
-                        Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),),);
+                        Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1, vominus:vominus , vominus1: vominus1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("Formula Page" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
-                    builder: (context) => formulaPage(),),);
+                    builder: (context) => formulaPage(),
+                  ),);
               },
             ),
 
@@ -261,6 +318,8 @@ class Voplus extends StatelessWidget {
     );
   }
 }
+
+
 
 
 

@@ -9,7 +9,6 @@ import 'package:lobos/rczPage.dart';
 import 'package:lobos/vZ.dart';
 import 'package:lobos/zInPage.dart';
 import 'package:lobos/zInusingRcPage.dart';
-
 import 'Voplus.dart';
 
 
@@ -79,6 +78,8 @@ class _calculationState extends State<calculation>
   var VZ1 = Complex(re:0 , im:0);
   var voplus = Complex(re:0 , im:0);
   var voplus1 = Complex(re:0 , im:0);
+  var vominus = Complex(re:0 , im:0);
+  var vominus1 = Complex(re:0 , im:0);
   TextEditingController reZL = TextEditingController(text: '');  // realZL
   TextEditingController imZL = TextEditingController(text: '');  // imaginaryZL
   TextEditingController reZo = TextEditingController(text: '');  // realZo
@@ -251,7 +252,8 @@ class _calculationState extends State<calculation>
                                 child: TextField(
                                   controller: reZL,
                                   decoration: InputDecoration(
-                                      labelText: "Real ZL (ohms)",
+                                        hintText: "ZL ᵣₑ (Ω)",
+                                      hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(10))
                                   ),
@@ -268,7 +270,8 @@ class _calculationState extends State<calculation>
                               child: TextField(
                                 controller: imZL,
                                 decoration: InputDecoration(
-                                    labelText: "Imaginary ZL (johms)",
+                                    hintText: "ZL ᵢₘ (jΩ)",
+                                    hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10))
                                 ),
@@ -285,7 +288,8 @@ class _calculationState extends State<calculation>
                                 child: TextField(
                                   controller: reZo,
                                   decoration: InputDecoration(
-                                      labelText: "Real Zo (ohms)",
+                                      hintText: "Zo ᵣₑ (Ω)",
+                                      hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(10))
                                   ),
@@ -306,7 +310,8 @@ class _calculationState extends State<calculation>
                               child: TextField(
                                 controller: imZo,
                                 decoration: InputDecoration(
-                                    labelText: "Imaginary Zo (johms)",
+                                    hintText: "Zo  ᵢₘ (jΩ)",
+                                    hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10))
                                 ),
@@ -323,7 +328,8 @@ class _calculationState extends State<calculation>
                                 child: TextField(
                                   controller: betaa,
                                   decoration: InputDecoration(
-                                      labelText: "Beta",
+                                      hintText: "β",
+                                      hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(10))
                                   ),
@@ -340,7 +346,8 @@ class _calculationState extends State<calculation>
                               child: TextField(
                                 controller: zPos,
                                 decoration: InputDecoration(
-                                    labelText: "Z position",
+                                    hintText: "Z (m)",
+                                    hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10))
                                 ),
@@ -362,7 +369,8 @@ class _calculationState extends State<calculation>
                                 child: TextField(
                                   controller: swr,
                                   decoration: InputDecoration(
-                                      labelText: "SWR",
+                                      hintText: "SWR",
+                                      hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(10))
                                   ),
@@ -379,7 +387,8 @@ class _calculationState extends State<calculation>
                               child: TextField(
                                 controller: thetaRoo,
                                 decoration: InputDecoration(
-                                    labelText: "thetaRo",
+                                    hintText: "θₒ (rad)",
+                                    hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10))
                                 ),
@@ -396,7 +405,8 @@ class _calculationState extends State<calculation>
                                 child: TextField(
                                   controller: thetaRcc,
                                   decoration: InputDecoration(
-                                      labelText: "thetaRc",
+                                      hintText: "θᴦ (rad)",
+                                      hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(10))
                                   ),
@@ -417,7 +427,8 @@ class _calculationState extends State<calculation>
                               child: TextField(
                                 controller: uP,
                                 decoration: InputDecoration(
-                                    labelText: "Phase Velocity(m/s)",
+                                    hintText: "ᵁᵖ  (㎧)",
+                                    hintStyle: TextStyle(fontSize: 20 , color: Colors.blue ,),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10))
                                 ),
@@ -434,7 +445,8 @@ class _calculationState extends State<calculation>
                                 child: TextField(
                                   controller: w,
                                   decoration: InputDecoration(
-                                      labelText: "w",
+                                      hintText: "ω",
+                                      hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                       border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(10))
                                   ),
@@ -451,7 +463,8 @@ class _calculationState extends State<calculation>
                               child: TextField(
                                 controller: lambdaa,
                                 decoration: InputDecoration(
-                                    labelText: "Lambda",
+                                    hintText: "λ",
+                                    hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10))
                                 ),
@@ -473,7 +486,8 @@ class _calculationState extends State<calculation>
                               child: TextField(
                                 controller: Freq,
                                 decoration: InputDecoration(
-                                    labelText: "Frequency",
+                                    hintText: "Frequency (㎐)",
+                                    hintStyle: TextStyle(fontSize: 20 , color: Colors.blue , ),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10))
                                 ),
@@ -543,35 +557,6 @@ class _calculationState extends State<calculation>
                         child: Math.tex("{${"Input${r'\ \,'}Impedance"}}${r'\ \,'}${r'\Z_'}{in}(-${r'\ell'}) " , textStyle:  TextStyle(fontSize: 23.3 , color: Colors.white ) ,),
                       ),
 
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // ElevatedButton(
-                      //   style:ElevatedButton.styleFrom( padding: EdgeInsets.all(10.0) , minimumSize: Size(100.0,50.0)),
-                      //   onPressed: () {
-                      //     _validatevZ1(reZL.text);
-                      //     _validatevZ1(imZL.text);
-                      //     _validatevZ1(reZo.text);
-                      //     _validatevZ1(imZo.text);
-                      //     _validatevZ1(betaa.text);
-                      //     _validatevZ1(zPos.text);
-                      //     _validatevZ1(swr.text);
-                      //     _validatevZ1(thetaRcc.text);
-                      //     _validatevZ1(thetaRoo.text);
-                      //
-                      //     Navigator.of(context).push(
-                      //
-                      //       MaterialPageRoute(
-                      //         builder: (context)=>vZ(
-                      //
-                      //         ),
-                      //       ),
-                      //     );
-                      //
-                      //   },
-                      //   child: Math.tex("{${"V_o^+"}}" , textStyle:  TextStyle(fontSize: 23 , color: Colors.white , ) ,),
-                      // ),
-
                       SizedBox(
                         height: 10,
                       ),
@@ -614,7 +599,7 @@ class _calculationState extends State<calculation>
             ListTile(
               title: Text("Home" , style: TextStyle(fontSize: 18),),
               onTap: () {
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(builder: (context) => calculation()),
                 );
               },
@@ -628,81 +613,90 @@ class _calculationState extends State<calculation>
                     builder: (context) => rcPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         rcvalue11: rcvalue11, zovalue: zovalue, zlvalue: zlvalue, zovalue1: zovalue1, zlvalue1: zlvalue1, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1,
                         beta: beta, zPosition: zPosition, SWR: SWR, rcUsingSwr1: rcUsingSwr1, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1,
-                        swrValue1: swrValue1, thetaRo2: thetaRo2, j2betaZpos: j2betaZpos, j2betaZpos1: j2betaZpos1, rcAtz: rcAtz, rcAtz1: rcAtz1),),);
+                        swrValue1: swrValue1, thetaRo2: thetaRo2, j2betaZpos: j2betaZpos, j2betaZpos1: j2betaZpos1, rcAtz: rcAtz, rcAtz1: rcAtz1),
+
+                  ),
+                );
               },
             ),
             ListTile(
               title: Text('Reflection Coefficient at $zPosition m ', style:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => rczPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zovalue1: zovalue1, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta,
                         zPosition: zPosition, SWR: SWR, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1,
-                        thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1),),);
+                        thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex(" ${r'\Z_'}{in}${r'\,'}at${r'\,'}$zPosition m" , textStyle:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => zInusingRcPage(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zovalue1: zovalue1, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition,
                         SWR: SWR, thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1,
                         thetaRo2: thetaRo2, j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1,
                         zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz, zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm,
-                        zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1),),);
+                        zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("{${"Input${r'\ \,'}Impedance"}}${r'\ \,'}${r'\Z_'}{in}(-${r'\ell'}) " , textStyle:  TextStyle(fontSize: 18 , color: Colors.black , fontWeight: FontWeight.bold) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => zInPage(j: j, realZL: realZL, imaginaryZL: imaginaryZL, realZo: realZo, imaginaryZo: imaginaryZo, zlvalue: zlvalue,
                         zovalue: zovalue, zlvalue1: zlvalue1, zovalue1: zovalue1, rctop: rctop, rcbtm: rcbtm, rctop1: rctop1, rcbtm1: rcbtm1, beta: beta,
-                        zPosition: zPosition, zIn: zIn, zIn1: zIn1, zIntop: zIntop, zInbtm: zInbtm, zIntop1: zIntop1, zInbtm1: zInbtm1, tanbetaz: tanbetaz),),);
+                        zPosition: zPosition, zIn: zIn, zIn1: zIn1, zIntop: zIntop, zInbtm: zInbtm, zIntop1: zIntop1, zInbtm1: zInbtm1, tanbetaz: tanbetaz),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("${r'\ V_{in}'}" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => vZ(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition, SWR: SWR,
                         thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1, thetaRo2: thetaRo2,
                         j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1, zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz,
                         zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm, zInusingRczTop1: zInusingRczTop1,
-                        zInusingRczBtm1: zInusingRczBtm1, Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),),);
+                        zInusingRczBtm1: zInusingRczBtm1, Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("${r'\ V_o^+'}" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
                     builder: (context) => Voplus(j: j, imaginaryZL: imaginaryZL, realZL: realZL, realZo: realZo, imaginaryZo: imaginaryZo, rcvalue1: rcvalue1,
                         zovalue: zovalue, zlvalue: zlvalue, rcbtm: rcbtm, rctop: rctop, rcbtm1: rcbtm1, rctop1: rctop1, beta: beta, zPosition: zPosition, SWR: SWR,
                         thetaRc: thetaRc, thetaRo: thetaRo, swrValue: swrValue, thetaRo1: thetaRo1, swrValue1: swrValue1, thetaRo2: thetaRo2,
                         j2betaZpos1: j2betaZpos1, j2betaZpos: j2betaZpos, rcAtz: rcAtz, rcAtz1: rcAtz1, zInusingRcz1: zInusingRcz1, zInusingRcz: zInusingRcz,
                         zInusingRczTop: zInusingRczTop, zInusingRczBtm: zInusingRczBtm, zInusingRczTop1: zInusingRczTop1, zInusingRczBtm1: zInusingRczBtm1,
-                        Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1),),);
+                        Zg: Zg, Vg: Vg, VZ: VZ, VZ1: VZ1, voplus: voplus, voplus1: voplus1, vominus:vominus , vominus1: vominus1),
+                  ),);
               },
             ),
             ListTile(
               title: Math.tex("Formula Page" , textStyle:  TextStyle(fontSize: 18  , color: Colors.black,fontWeight: FontWeight.bold ) ,),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
-                Navigator.pushReplacement(context,
+                Navigator.push(context,
                   MaterialPageRoute(
-                    builder: (context) => formulaPage(),),);
+                    builder: (context) => formulaPage(),
+                  ),);
               },
             ),
 
